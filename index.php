@@ -16,28 +16,37 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rechercher des utilisateurs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <form action="" method="$_GET">
-        <input type="search" name="search" placeholder="Rechercher un utilisateurs">
-        <input type="submit" name="envoyer">
-    </form>
+    <div class="login-form">
+        <form action="" method="$_GET">
+            <div class="form-group">
+                <input type="search" name="search" placeholder="Rechercher un utilisateurs">
+            </div>
+            <div class="form-group">
+                <input type="submit" name="envoyer" class="btn btn-primary ">
+            </div>
+        </form>
 
-    <section class="affichage_utilisateur">
-        <?php
-        if ($allusers->rowCount() > 0) {
-            while ($users = $allusers->fetch()) {
-        ?>
-                <p><?= $users['prenom']; ?></p>
-        <?php
+    </div>
+  <section class="affichage_utilisateur">
+            <?php
+            if ($allusers->rowCount() > 0) {
+                while ($users = $allusers->fetch()) {
+            ?>
+                    <p><?= $users['prenom']; ?></p>
+            <?php
+                }
+            } else {
+                echo "<p>aucun utilisateur trouver</p>";
             }
-        } else {
-            echo "<p>aucun utilisateur trouver</p>";
-        }
 
-        ?>
-    </section>
+            ?>
+        </section>
 
 </body>
 
