@@ -33,20 +33,20 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
         </form>
 
     </div>
-  <section class="affichage_utilisateur">
-            <?php
-            if ($allusers->rowCount() > 0) {
-                while ($users = $allusers->fetch()) {
-            ?>
-                    <p><?= $users['prenom']; ?></p>
-            <?php
-                }
-            } else {
-                echo "<p>aucun utilisateur trouver</p>";
+    <section class="affichage_utilisateur">
+        <?php
+        if ($allusers->rowCount() > 0) {
+            while ($users = $allusers->fetch()) {
+        ?>
+                <p><?= $users['prenom']; ?></p>
+        <?php
             }
+        } else {
+            echo "<p>aucun utilisateur trouver</p>";
+        }
 
-            ?>
-        </section>
+        ?>
+    </section>
 
 </body>
 
