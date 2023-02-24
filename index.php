@@ -1,5 +1,11 @@
 <?php
-include_once'connexion_BDD.php';
+include_once 'connexion_BDD.php';
+
+$allusers = $bdd->query('SELECT * FROM inscrits ORDER BY id DESC');
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $recherche = htmlspecialchars($_GET['search']);
+    $allusers = $bdd->query('SELECT prenom  FROM inscrits WHERE prenom  LIKE "%' . $recherche . '%" ORDER BY id DESC');
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +20,25 @@ include_once'connexion_BDD.php';
 
 <body>
     <form action="" method="$_GET">
-        <input type="search" name="search" placeholder="Recherhcer un utilisateurs">
+        <input type="search" name="search" placeholder="Rechercher un utilisateurs">
         <input type="submit" name="envoyer">
     </form>
+
+    <section class="affichage_utilisateur">
+        <?php
+        if ($allusers->rowCount() > 0) {
+            while ($users = $allusers->fetch()) {
+        ?>
+                <p><?= $users['prenom']; ?></p>
+        <?php
+            }
+        } else {
+            echo "<p>aucun utilisateur trouver</p>";
+        }
+
+        ?>
+    </section>
+
 </body>
 
 </html>
